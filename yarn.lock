@@ -240,6 +240,11 @@ concat-map@0.0.1:
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
   integrity sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=
 
+core-js@^3.6.1:
+  version "3.6.5"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.6.5.tgz#7395dc273af37fb2e50e9bd3d9fe841285231d1a"
+  integrity sha512-vZVEEwZoIsI+vPEuoF9Iqf5H7/M3eeQqWlQnYa8FSKKePuYTf5MWnxb5SDAzCa60b3JBRS5g9b+Dq7b1y/RCrA==
+
 cross-spawn@^7.0.2:
   version "7.0.2"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-7.0.2.tgz#d0d7dcfa74e89115c7619f4f721a94e1fdb716d6"
@@ -703,6 +708,35 @@ progress@^2.0.0:
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
 
+promise-duplex@^5.0.3:
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/promise-duplex/-/promise-duplex-5.0.3.tgz#92b2bb0c6c996bed35421e08bf1832b8eac4d84c"
+  integrity sha512-f/1gIgfEe5RUUHwA42B6oC8nhUpFheRC4Mc6gsAJGzpNdUyCwJ2rHMBKCorB4l//zmb8j2+TPUrr3le5Jqi+iA==
+  dependencies:
+    core-js "^3.6.1"
+    promise-readable "^5.0.4"
+    promise-writable "^5.0.4"
+
+promise-readable@^5.0.4:
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/promise-readable/-/promise-readable-5.0.4.tgz#5f71fa8673e540b73e5afe62c0679fa2251a7501"
+  integrity sha512-v1MqYyLQvopoi+FOVL+HErz4TB7lpaZf7H+pQo8vW6yAmJ1QZVDww7XTTwK+gqzQZylmhrlS3CaHQzLkKorZjA==
+  dependencies:
+    core-js "^3.6.1"
+
+promise-socket@^6.0.3:
+  version "6.0.3"
+  resolved "https://registry.yarnpkg.com/promise-socket/-/promise-socket-6.0.3.tgz#90537c6a3e9b9e1fea07e7d895186b1110863002"
+  integrity sha512-mCP9YcHwOh2bGmuHURSu2YnzSdOyWmMd3qKv6eSFLOY6iax+IDENou4cCtsEKIQwaj9gVlcOQVLCOB/yd4ELgg==
+  dependencies:
+    promise-duplex "^5.0.3"
+    tslib "^1.10.0"
+
+promise-writable@^5.0.4:
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/promise-writable/-/promise-writable-5.0.4.tgz#acd64563ca0ada986be006e120bebb50e46760a4"
+  integrity sha512-D8ar07P5Ntc1C9KhEOZplFdHn82BpiYn/FDc1S8PY2shrRqRcf27zq1GcMsfiP/cvEpatF6Vk3q1L+T7+5OoDw==
+
 punycode@^2.1.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
@@ -864,7 +898,7 @@ tmp@^0.0.33:
   dependencies:
     os-tmpdir "~1.0.2"
 
-tslib@^1.8.1, tslib@^1.9.0:
+tslib@^1.10.0, tslib@^1.8.1, tslib@^1.9.0:
   version "1.13.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.13.0.tgz#c881e13cc7015894ed914862d276436fa9a47043"
   integrity sha512-i/6DQjL8Xf3be4K/E6Wgpekn5Qasl1usyw++dAA35Ue5orEn65VIxOA+YvNNl9HV3qv70T7CNwjODHZrLwvd1Q==
@@ -892,6 +926,11 @@ type-fest@^0.8.1:
   version "0.8.1"
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.8.1.tgz#09e249ebde851d3b1e48d27c105444667f17b83d"
   integrity sha512-4dbzIzqvjtgiM5rw1k5rEHtBANKmdudhGyBEajN01fEyhaAIhsoKNy6y7+IN93IfpFtwY9iqi7kD+xwKhQsNJA==
+
+typescript@^3.8.0:
+  version "3.9.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.3.tgz#d3ac8883a97c26139e42df5e93eeece33d610b8a"
+  integrity sha512-D/wqnB2xzNFIcoBG9FG8cXRDjiqSTbG2wd8DMZeQyJlP1vfTkIxH4GKveWaEBYySKIg+USu+E+EDIR47SqnaMQ==
 
 uri-js@^4.2.2:
   version "4.2.2"
