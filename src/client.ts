@@ -1,6 +1,7 @@
 import { Socket as NodeSocket } from "net";
 import { PromiseSocket as Socket } from "promise-socket";
 import Command from "./command";
+import OpenRGBDevice from "./device";
 
 const HEADER_SIZE = 16;
 
@@ -46,6 +47,13 @@ export default class OpenRGBClient {
         return buffer.readUInt32LE();
     }
 
+    public async getController(deviceId: number): Promise<OpenRGBDevice> {
+        await this.sendMessage(Command.RequestControllerData, undefined, deviceId);
+
+        const buffer = await this.readMessage();
+        return new OpenRGBDevice(buffer);
+    }
+
     private async sendMessage(commandId: Command, buffer = Buffer.alloc(0), deviceId = 0): Promise<void> {
         const header = this.encodeHeader(commandId, buffer.byteLength, deviceId);
         const packet = Buffer.concat([header, buffer]);
@@ -72,10 +80,13 @@ export default class OpenRGBClient {
     private encodeHeader(commandId: Command, length: number, deviceId: number): Buffer {
         const buffer = Buffer.alloc(HEADER_SIZE);
 
-        buffer.write("ORGB", "ascii");
-        buffer.writeUInt32LE(deviceId, 4);
-        buffer.writeUInt32LE(commandId as number, 8);
-        buffer.writeUInt32LE(length as number, 12);
+
+        // I have no idea why eslint thinks this variable is unused, so we'll disable the warning
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        let index = buffer.write("ORGB", "ascii");
+        index = buffer.writeUInt32LE(deviceId, index);
+        index = buffer.writeUInt32LE(commandId as number, index);
+        index = buffer.writeUInt32LE(length, index);
 
         return buffer;
     }

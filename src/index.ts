@@ -1,4 +1,5 @@
 import OpenRGBClient from "./client";
+import OpenRGBDevice from "./device";
 
 const start = async () => {
     const client = new OpenRGBClient({
@@ -9,7 +10,15 @@ const start = async () => {
 
     await client.connect();
     const controllerCount = await client.getControllerCount();
-    console.log(controllerCount);
+
+    const devices = [];
+
+    for (let i = 0; i < controllerCount; i++) {
+        const device = await client.getController(i);
+        devices.push(device);
+    }
+
+    console.log(JSON.stringify(devices))
 };
 
 start();
