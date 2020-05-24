@@ -40,6 +40,11 @@ export default class OpenRGBClient {
         await this.sendMessage(Command.SetClientName, nameBytes as Buffer);
     }
 
+    /**
+     * Requests the number of controllers active on the OpenRGB server.
+     * 
+     * @returns a promise with the number of controllers the OpenRGB server can control.
+     */
     public async getControllerCount(): Promise<number> {
         await this.sendMessage(Command.RequestControllerCount);
 
@@ -47,7 +52,12 @@ export default class OpenRGBClient {
         return buffer.readUInt32LE();
     }
 
-    public async getController(deviceId: number): Promise<OpenRGBDevice> {
+    /**
+     * Requests all information about an OpenRGB device.
+     * 
+     * @param deviceId The id of the device we want to request, these are sequential starting from 0.
+     */
+    public async getDeviceController(deviceId: number): Promise<OpenRGBDevice> {
         await this.sendMessage(Command.RequestControllerData, undefined, deviceId);
 
         const buffer = await this.readMessage();
