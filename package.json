@@ -2,9 +2,11 @@
   "name": "openrgb",
   "version": "0.1.0",
   "description": "A NodeJS implementation of a OpenRGB SDK client.",
-  "main": "build/index.js",
+  "main": "dist/index.js",
   "author": "vlakreeh <zebpiasecki@gmail.com>",
   "license": "MIT",
+  "types": "dist/index.d.ts",
+  "prepublish": "tsc",
   "dependencies": {
     "promise-socket": "^6.0.3"
   },
