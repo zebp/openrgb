@@ -1,6 +1,6 @@
 {
   "name": "openrgb",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A NodeJS implementation of a OpenRGB SDK client.",
   "main": "dist/index.js",
   "author": "vlakreeh <zebpiasecki@gmail.com>",
