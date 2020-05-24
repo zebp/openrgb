@@ -1,4 +1,4 @@
-const { OpenRGBClient } = require("../build/index.js");
+const { OpenRGBClient } = require("../dist/index.js");
 
 async function start() {
     const client = new OpenRGBClient({
