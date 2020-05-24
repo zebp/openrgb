@@ -1,7 +1,7 @@
 import { Socket as NodeSocket } from "net";
 import { PromiseSocket as Socket } from "promise-socket";
 import Command from "./command";
-import OpenRGBDevice, { Color, Zone } from "./device";
+import OpenRGBDevice, { Color } from "./device";
 
 const HEADER_SIZE = 16;
 
@@ -108,7 +108,7 @@ export default class OpenRGBClient {
     }
 
     public async setCustomMode(deviceId: number): Promise<void> {
-        await this.sendMessage(Command.RequestControllerData, undefined, deviceId);
+        await this.sendMessage(Command.SetCustomMode, undefined, deviceId);
     }
 
     private async sendMessage(commandId: Command, buffer = Buffer.alloc(0), deviceId = 0): Promise<void> {
