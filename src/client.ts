@@ -1,7 +1,7 @@
 import { Socket as NodeSocket } from "net";
 import { PromiseSocket as Socket } from "promise-socket";
 import Command from "./command";
-import OpenRGBDevice from "./device";
+import OpenRGBDevice, { Color, Zone } from "./device";
 
 const HEADER_SIZE = 16;
 
@@ -62,6 +62,53 @@ export default class OpenRGBClient {
 
         const buffer = await this.readMessage();
         return new OpenRGBDevice(buffer);
+    }
+
+    public async updateLeds(deviceId: number, colors: Color[]): Promise<void> {
+        const size = 2 + (4 * colors.length);
+        const colorsBuffer = Buffer.alloc(size);
+
+        colorsBuffer.writeUInt16LE(colors.length);
+
+        for (let i = 0; i < colors.length; i++) {
+            const color = colors[i];
+            const offset = 2 + (i * 4);
+
+            colorsBuffer.writeUInt8(color.red, offset);
+            colorsBuffer.writeUInt8(color.green, offset + 1);
+            colorsBuffer.writeUInt8(color.blue, offset + 2);
+        }
+
+        const prefixBuffer = Buffer.alloc(4);
+        prefixBuffer.writeUInt32LE(size);
+
+        await this.sendMessage(Command.UpdateLeds, Buffer.concat([prefixBuffer, colorsBuffer]), deviceId);
+    }
+
+    public async updateZoneLeds(deviceId: number, zoneId: 0, colors: Color[]): Promise<void> {
+        const size = 6 + (4 * colors.length);
+        const colorsBuffer = Buffer.alloc(size);
+
+        colorsBuffer.writeUInt32LE(zoneId);
+        colorsBuffer.writeUInt16LE(colors.length, 4);
+
+        for (let i = 0; i < colors.length; i++) {
+            const color = colors[i];
+            const offset = 6 + (i * 4);
+
+            colorsBuffer.writeUInt8(color.red, offset);
+            colorsBuffer.writeUInt8(color.green, offset + 1);
+            colorsBuffer.writeUInt8(color.blue, offset + 2);
+        }
+
+        const prefixBuffer = Buffer.alloc(4);
+        prefixBuffer.writeUInt32LE(size);
+
+        await this.sendMessage(Command.UpdateLeds, Buffer.concat([prefixBuffer, colorsBuffer]), deviceId);
+    }
+
+    public async setCustomMode(deviceId: number): Promise<void> {
+        await this.sendMessage(Command.RequestControllerData, undefined, deviceId);
     }
 
     private async sendMessage(commandId: Command, buffer = Buffer.alloc(0), deviceId = 0): Promise<void> {

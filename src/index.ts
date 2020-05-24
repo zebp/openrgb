@@ -10,14 +10,17 @@ const start = async () => {
     await client.connect();
     const controllerCount = await client.getControllerCount();
 
-    const devices = [];
+    for (let deviceId = 0; deviceId < controllerCount; deviceId++) {
+        const device = await client.getDeviceController(deviceId);
+        const colors = Array(device.colors.length).fill({
+            red: 0x00,
+            green: 0x50,
+            blue: 0xFF
+        });
 
-    for (let i = 0; i < controllerCount; i++) {
-        const device = await client.getDeviceController(i);
-        devices.push(device);
+        console.log(`Setting the color of ${device.name}`);
+        await client.updateLeds(deviceId, colors);
     }
-
-    console.log(JSON.stringify(devices))
 };
 
 start();
