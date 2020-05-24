@@ -4,6 +4,10 @@
   "description": "A NodeJS implementation of a OpenRGB SDK client.",
   "main": "dist/index.js",
   "author": "vlakreeh <zebpiasecki@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vlakreeh/openrgb"
+  },
   "license": "MIT",
   "types": "dist/index.d.ts",
   "prepublish": "tsc",
