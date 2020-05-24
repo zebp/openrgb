@@ -137,7 +137,6 @@ export default class OpenRGBClient {
     private encodeHeader(commandId: Command, length: number, deviceId: number): Buffer {
         const buffer = Buffer.alloc(HEADER_SIZE);
 
-
         // I have no idea why eslint thinks this variable is unused, so we'll disable the warning
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         let index = buffer.write("ORGB", "ascii");
