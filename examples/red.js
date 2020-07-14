@@ -3,7 +3,7 @@ const { OpenRGBClient } = require("../dist/index.js");
 async function start() {
     const client = new OpenRGBClient({
         host: "localhost",
-        port: 1337,
+        port: 6742,
         name: "Red Example"
     });
 
@@ -21,6 +21,8 @@ async function start() {
         console.log(`Setting the color of ${device.name}`);
         await client.updateLeds(deviceId, colors);
     }
+
+    await client.disconnect();
 }
 
 start();

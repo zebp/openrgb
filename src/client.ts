@@ -40,6 +40,10 @@ export default class OpenRGBClient {
         await this.sendMessage(Command.SetClientName, nameBytes as Buffer);
     }
 
+    public async disconnect(): Promise<void> {
+        await this.socket?.end();
+    }
+
     /**
      * Requests the number of controllers active on the OpenRGB server.
      * 
