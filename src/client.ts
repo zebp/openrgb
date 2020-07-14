@@ -34,8 +34,6 @@ export default class OpenRGBClient {
         this.socket = new Socket(new NodeSocket());
         await this.socket.connect(this.port, this.host);
 
-        await new Promise(resolve => setTimeout(resolve, 1000));
-
         const nameBytes = new TextEncoder().encode(this.name);
         await this.sendMessage(Command.SetClientName, nameBytes as Buffer);
     }
